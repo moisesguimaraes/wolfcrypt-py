@@ -2,13 +2,15 @@ sudo: required
 
 jobs:
   include:
-  - install: skip
-    services:
-    - docker
-    script:
-    - ./make/manylinux1/build_wheels.sh
-  - os: osx
+  - name: osx
+    os: osx
     install:
     - ./make/osx/install_python.sh
     script:
     - ./make/osx/build_wheels.sh
+  - name: manylinux1
+    install: skip
+    services:
+    - docker
+    script:
+    - ./make/manylinux1/build_wheels.sh
